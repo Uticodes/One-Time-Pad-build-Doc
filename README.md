@@ -157,3 +157,12 @@ Then locate qa3 folder, you should now see the generated files, the dependency i
 
 <img width="1108" alt="Screenshot 2022-02-25 at 2 35 23 AM" src="https://user-images.githubusercontent.com/43546652/155637006-74030c79-6262-46db-bcc0-3fe287cea1ab.png">
 
+After that, you have to increase versioning number in app build.gradle.
+Second to final thing to do is to add the new qa endpoint in ```mainline-pipeline.yml```  like so 
+
+<img width="900" alt="image" src="https://user-images.githubusercontent.com/43546652/155740173-17f6c2d2-f191-4763-9608-81206929af02.png">
+
+Finally, it's to add the endpoint in ```android-pos-app``` and create a PR
+
+<img width="853" alt="image" src="https://user-images.githubusercontent.com/43546652/155741853-7bff072b-2bd9-406b-9875-ad60cad6513f.png">
+
