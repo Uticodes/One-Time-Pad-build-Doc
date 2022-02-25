@@ -24,7 +24,7 @@ Readers defines the type of readers the app supports.
 
 ## Steps to follow to make different builds
 
-We are going to use some tickets some tickets that we've worked on already as our example tickets for this process.
+We will make use of some tickets that we've already worked on as our example tickets for this process.
 
 When a ticket is given, e.g https://mypinpad.atlassian.net/browse/VUBSVK-33
 The requirement is to:
@@ -32,11 +32,10 @@ The requirement is to:
 2. Hide App icon from phone menu
 
 To achieve this, we have to go to the project on our local machine
-Right now I believe you have the project setup on your PC.
 On the projeect, first checkout to develop branch, git pull to get latest changes, then git checkout -b [branach-name] (in this case we use the ticket number plus description for the branch name, e.g VUBSVK-33/update_emv_config) to create a new branch for the task,
 
 Now checking on the ticket, the title say ```New VUB Production build with correct EMV Configuration``` meaning that we are to make a Production build.
-So let's navigate to where we can update our EMV config file, on the project (android-goodfellow), then open ```app```, then open ```src```, open ```client``` in here you'll see packages for different clients, for the seek of this example, we need ```circleblueintesa```, open ```circleblueintesa```, open ```indevice```, open ```vub```, inside of it we have two packages, ```dev``` and ```live```, dev is for development builds, while live is for production builds, so we'll open ```live => res => raw```, inside raw we have ```emv_config.json``` this is the file we need to update,
+So let's navigate to where we can update our EMV config file, on the project (android-goodfellow), then open ```app\src\client```,  in here you'll see packages for different clients, for the seek of this example, we need ```circleblueintesa```, open ```circleblueintesa\indevice\vub```, inside of it we have two packages, ```dev``` and ```live```, dev is for development builds, while live is for production builds, so we'll open ```live => res => raw```, inside raw we have ```emv_config.json``` this is the file we need to update,
 
 ![image](https://user-images.githubusercontent.com/43546652/155621075-a30e9922-a3b3-46d7-9ba6-c84089462a76.png)
 
@@ -57,8 +56,8 @@ After that, next thing that should be done, would be to update build version on 
 Now we're ready to make a PR. Once PR is review/approve and Complete, go back to terminal and checkout to develop branch, pull to get update branch, checkout to qa branch, pull to update qa branch, rebase develop into qa, now we're ready to make our build tags
 
 #Making Build tags 
-First thing we use for the build tag is the build.gradle versioning e.g 1.58.28, then RELEASE-1.58.28-INDEVICEPIN-SODIUM_VUB_LIVE-PILOT, how we get this, ```1.58.28```
-we know is the versioning number, ```INDEVICEPIN``` is gotten from the ticket, Reader will be spacified, ```SODIUM_VUB_LIVE``` endpoint name (sodium-live-vub), it can be gotten by navigating to where we have all the endpoints, open ```prod.yaml```, search for VUB, then ```PILOT``` is for live.
+We create a build tag using this format: ```RELEASE-1.58.28-INDEVICEPIN-SODIUM_VUB_LIVE-PILOT```, ```1.58.28```
+we know is the versioning number, ```INDEVICEPIN``` is gotten from the ticket, Reader will be specified, ```SODIUM_VUB_LIVE``` endpoint name (sodium-live-vub), it can be gotten by navigating to where we have all the endpoints, open ```prod.yaml```, search for VUB, then ```PILOT``` is for live.
 
 ![image](https://user-images.githubusercontent.com/43546652/155624703-9d25c82d-2464-4329-afd2-6101c633ef29.png)
 
@@ -87,7 +86,7 @@ Once the build is done, click to open, clip on artifact to get the build, or cli
 
 ![Screenshot 2022-02-25 at 1 30 30 AM](https://user-images.githubusercontent.com/43546652/155630828-fdca1a63-55f2-4b62-a79e-0bef1958a8fe.png)
 
-Donload build with protected and mapping file
+Download build with protected and mapping file
 ![Screenshot 2022-02-25 at 1 34 50 AM](https://user-images.githubusercontent.com/43546652/155631028-9c79939d-e76d-4105-9d22-d85ae4a31980.png)
 
 You can then use clientside-wiki project to make a folder for your build
@@ -105,7 +104,7 @@ version=“1.56.13”
 ![image](https://user-images.githubusercontent.com/43546652/155631392-e06330f7-90ec-4ec6-8e5a-5f075ffd8327.png)
 
 
-Then you can now upload your build to ```Release Candidate - Android``` https://licentiagroup.sharepoint.com/sites/GoodfellowOpenMPOS/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=yXP5An&cid=f9db9a1f%2D4022%2D45f9%2D8a5e%2Dcc2edbfdffb5&FolderCTID=0x012000CF477C05AEE46B4897359A94FBA55777&OR=Teams%2DHL&CT=1645618624771&sourceId=&params=%7B%22AppName%22%3A%22Teams%2DDesktop%22%2C%22AppVersion%22%3A%221415%2F22010300411%22%7D&id=%2Fsites%2FGoodfellowOpenMPOS%2FShared%20Documents%2FRelease%20Candidates%20%2D%20Android%2FApks%2FRelease%20Candidates&viewid=48e9af4d%2Dbcef%2D4db2%2Dba07%2Dce3a5b184f21
+you can now upload your build to ```Release Candidate - Android``` https://licentiagroup.sharepoint.com/sites/GoodfellowOpenMPOS/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=yXP5An&cid=f9db9a1f%2D4022%2D45f9%2D8a5e%2Dcc2edbfdffb5&FolderCTID=0x012000CF477C05AEE46B4897359A94FBA55777&OR=Teams%2DHL&CT=1645618624771&sourceId=&params=%7B%22AppName%22%3A%22Teams%2DDesktop%22%2C%22AppVersion%22%3A%221415%2F22010300411%22%7D&id=%2Fsites%2FGoodfellowOpenMPOS%2FShared%20Documents%2FRelease%20Candidates%20%2D%20Android%2FApks%2FRelease%20Candidates&viewid=48e9af4d%2Dbcef%2D4db2%2Dba07%2Dce3a5b184f21
  
 Share the link on the ```ticket```, share the link on the ```Mobile Deployments``` channel and tag the reporter on the ticket, then share link on ```Release Candidates - Android``` channel
 
@@ -158,7 +157,7 @@ Then locate qa3 folder, you should now see the generated files, the dependency i
 <img width="1108" alt="Screenshot 2022-02-25 at 2 35 23 AM" src="https://user-images.githubusercontent.com/43546652/155637006-74030c79-6262-46db-bcc0-3fe287cea1ab.png">
 
 After that, you have to increase versioning number in app build.gradle.
-Second to final thing to do is to add the new qa endpoint in ```mainline-pipeline.yml```  like so 
+Then add the new qa endpoint in ```mainline-pipeline.yml``` 
 
 <img width="900" alt="image" src="https://user-images.githubusercontent.com/43546652/155740173-17f6c2d2-f191-4763-9608-81206929af02.png">
 
